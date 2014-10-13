@@ -1,0 +1,770 @@
+<!-- admin.mustache -->
+<!--
+ /$$           /$$   /$$     /$$           /$$
+|__/          |__/  | $$    |__/          | $$
+ /$$ /$$$$$$$  /$$ /$$$$$$   /$$  /$$$$$$ | $$
+| $$| $$__  $$| $$|_  $$_/  | $$ |____  $$| $$
+| $$| $$  \ $$| $$  | $$    | $$  /$$$$$$$| $$
+| $$| $$  | $$| $$  | $$ /$$| $$ /$$__  $$| $$
+| $$| $$  | $$| $$  |  $$$$/| $$|  $$$$$$$| $$
+|__/|__/  |__/|__/   \___/  |__/ \_______/|__/
+	-->
+<script id="bm_press_admin_initial" type="text/html">
+
+
+
+<div class="hero-unit">
+	<h1 class="text-center">Business Model Press</h1>
+
+<p>Business Model Press is a simple WordPress plugin that lets you easily publish your business model assumptions directly from your WordPress dashboard, and get feedback from customers and stakeholders using the WordPress commenting system. We want to help you:</p>
+<p><strong>Visualize Your Business Model.</strong> Easily sketch out and document your business model assumptions directly from your WordPress dashboard. Integrate business model prototyping with your daily editorials, blog comments, and distribution metrics.</p>
+<p><strong>Share and get feedback.</strong> Many companies rely on their blogs to communicate with and get feedback from customers and users. Simply publish your business model to your site and get feedback from customers, blog followers, or advisors using WordPress&#8217; commenting system.</p>
+<p><strong>Don’t just ideate your business model, take action on it.</strong> Your business model is more than just a static planning tool. Test and track your business model assumptions continuously by tagging assumptions <em>pending</em>, <em>validated</em>, or <em>invalidated</em>. Understand how your business model is affected by customer feedback and every experiment you run.</p>
+<p>And if you want to share your business model only with internal stakeholders, simply make your post private and have your contributors log in using a password.</p>
+
+	<p class="text-center"><small>
+		<a href="http://torgronsund.com/2012/06/06/businessmodelpress/">Read more about how to turn your blog into 
+		a lean startup and business model design tool</a>
+	</small></p>
+
+	<p class="text-center"><a href="#new_model"
+		class="btn btn-primary btn-large"
+	>Create new business model &raquo;</a></p>
+
+	
+</div>
+
+<div class="container mini-layout">
+	<ul id="initial_tabs" class="nav nav-tabs">
+		<li class="active"><a href="#tab_models" data-toggle="tab">Models</a></li>
+		<!--<li><a href="#tab_settings" data-toggle="tab">Settings</a></li>-->
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="tab_models">
+			<p>Loading models...</p>
+		</div>
+		<!--<div class="tab-pane" id="tab_settings">
+			
+		
+		<p><a class="btn" href="javascript: bm_press.server.create_table();"
+		>Create Business Model table in WordPress database</a></p>
+
+		<p><a class="btn" href="javascript: bm_press.server.delete_table();"
+		>Delete Business Model table in WordPress database</a></p>
+
+		</div>-->
+	</div>
+</div>
+<hr>
+
+<footer>
+	<p><a href="http://bmpress.io">Business Model Press</a> by <a href="http://no.linkedin.com/in/mikalmadsen/">Mikal Madsen</a> and <a href="http://torgronsund.com/">Tor Grønsund</a>, licensed under <a href="http://www.gnu.org/licenses/gpl.html">GNU GPLv3</a>. <a href="http://businessmodelgeneration.com/canvas/bmc/">Business Model Canvas</a> by <a href="http://alexosterwalder.com/">Alex Osterwalder</a> licensed under
+	<a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share Alike 3.0 Unported</a><p/>
+</footer>
+
+</div> <!-- /container -->
+</script>
+
+<!--
+   /$$               /$$       /$$          
+  | $$              | $$      | $$          
+ /$$$$$$    /$$$$$$ | $$$$$$$ | $$  /$$$$$$ 
+|_  $$_/   |____  $$| $$__  $$| $$ /$$__  $$
+  | $$      /$$$$$$$| $$  \ $$| $$| $$$$$$$$
+  | $$ /$$ /$$__  $$| $$  | $$| $$| $$_____/
+  |  $$$$/|  $$$$$$$| $$$$$$$/| $$|  $$$$$$$
+   \___/   \_______/|_______/ |__/ \_______/
+receives { models: $.server.cached_list }, which is an array of models
+-->
+<script id="bm_press_model_table" type="text/html">
+<table class="table table-striped table-hover">
+	<thead>
+		<th>Designed for</th>
+		<th>Iteration</th>
+		<th>Created on</th>
+		<th>Changed on</th>
+		<th>Designed by</th>
+		<th>Action</th>
+	</thead>
+	<tbody>
+		{{# models }}
+		<tr>
+			<td><a href="#model/{{ id }}">{{ designed_for }}</a></td>
+			<td>{{ iteration }}</td>
+			<td>{{ time_created }}</td>
+			<td>{{ time_saved }}</td>
+			<td>{{ designed_by }} </td>
+			<td>
+				<div class="btn-group">
+					<button class="btn"
+						onclick="window.location.href='#model/{{ id }}';"
+						><i class="icon-folder-open"></i> Open</button>
+					<button class="btn dropdown-toggle" data-toggle="dropdown">
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu pull-right">
+						<li><a tabindex="-1"
+							href="javascript: bm_press.list.iterate('{{ id }}');"
+							><i class="icon-repeat"></i> Iterate</a></li>
+						<li><a tabindex="-1"
+							href="javascript: bm_press.modal.list_shortcode('{{ id }}');"
+							><i class="icon-share"></i> Shortcode</a></li>
+						<li class="divider"></li>
+						<li><a tabindex="-1"
+							href="javascript: bm_press.modal.list_delete('{{ id }}');"
+							><i class="icon-trash"></i> Delete</a></li>
+					</ul>
+
+				</div>
+
+				{{> bm_press_list_modal }}
+			</td>
+		</tr>
+		{{/ models }}
+	</tbody>
+</table>
+
+</script>
+
+
+
+<!--
+                               /$$           /$$
+                              | $$          | $$
+ /$$$$$$/$$$$   /$$$$$$   /$$$$$$$  /$$$$$$ | $$
+| $$_  $$_  $$ /$$__  $$ /$$__  $$ /$$__  $$| $$
+| $$ \ $$ \ $$| $$  \ $$| $$  | $$| $$$$$$$$| $$
+| $$ | $$ | $$| $$  | $$| $$  | $$| $$_____/| $$
+| $$ | $$ | $$|  $$$$$$/|  $$$$$$$|  $$$$$$$| $$
+|__/ |__/ |__/ \______/  \_______/ \_______/|__/
+receives $.server.cached_list[id],
+-->
+<script id="bm_press_admin_model" type="text/html">
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand">{{ designed_for }} &mdash; #{{ iteration }}</a>
+
+			<button class="btn pull-right"
+				onclick="bm_press.model.close()"
+				><i class="icon-remove"></i> Close</button>
+			<div class="btn-group pull-right">
+				<button class="btn saveButton"
+					onclick="bm_press.model.save()"
+					><i class="icon-ok"></i> Saved</button>
+				<button class="btn dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a tabindex="-1"
+						href="javascript: bm_press.model.delete();"
+						><i class="icon-trash"></i> Delete</a></li>
+				</ul>
+			</div>
+			<button class="btn pull-right iterateButton"
+				onclick="bm_press.model.iterate()"
+				><i class="icon-repeat"></i> Iterate</button>
+		</div>
+	</div>
+</div>
+<div class="container mini-layout">
+	<ul id="model_tabs" class="nav nav-tabs">
+		<li class="active"><a href="#tab_canvas" data-toggle="tab">Canvas</a></li>
+		<li><a href="#tab_meta" data-toggle="tab">Meta</a></li>
+		<li><a href="#tab_shortcode" data-toggle="tab">Use in a post</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="tab_canvas">
+			{{> bm_press_canvas }}
+		</div>
+		<div class="tab-pane" id="tab_meta">
+			{{> bm_press_information }}
+		</div>
+		<div class="tab-pane" id="tab_shortcode">
+			{{> bm_press_shortcode }}
+		</div>
+	</div>
+</div>
+
+{{> bm_press_model_modals }}
+
+</script><!-- admin_model -->
+
+<!--
+  /$$$$$$$  /$$$$$$  /$$$$$$$  /$$    /$$ /$$$$$$   /$$$$$$$
+ /$$_____/ |____  $$| $$__  $$|  $$  /$$/|____  $$ /$$_____/
+| $$        /$$$$$$$| $$  \ $$ \  $$/$$/  /$$$$$$$|  $$$$$$ 
+| $$       /$$__  $$| $$  | $$  \  $$$/  /$$__  $$ \____  $$
+|  $$$$$$$|  $$$$$$$| $$  | $$   \  $/  |  $$$$$$$ /$$$$$$$/
+ \_______/ \_______/|__/  |__/    \_/    \_______/|_______/ 
+ -->
+<script id="bm_press_canvas" type="text/html" class="partial">
+
+<div class="row-fluid">
+	<div class="span2">
+		<div class="well key_partners"></div>
+	</div>
+	<div class="span2">
+		<div class="well key_activities"></div>
+		<div class="well key_resources"></div>
+	</div>
+	<div class="span2 val_prop_col">
+		<div class="well value_propositions"></div>
+	</div>
+	<div class="span2">
+		<div class="well customer_relationships"></div>
+		<div class="well channels_"></div>
+	</div>
+	<div class="span2">
+		<div class="well customer_segments"></div>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span5">
+		<div class="well cost_structure"></div>
+	</div>
+	<div class="span5">
+		<div class="well revenue_streams"></div>
+	</div>
+</div>
+</script>
+
+<!--
+                                 /$$     /$$                    
+                                | $$    |__/                    
+  /$$$$$$$  /$$$$$$   /$$$$$$$ /$$$$$$   /$$  /$$$$$$  /$$$$$$$ 
+ /$$_____/ /$$__  $$ /$$_____/|_  $$_/  | $$ /$$__  $$| $$__  $$
+|  $$$$$$ | $$$$$$$$| $$        | $$    | $$| $$  \ $$| $$  \ $$
+ \____  $$| $$_____/| $$        | $$ /$$| $$| $$  | $$| $$  | $$
+ /$$$$$$$/|  $$$$$$$|  $$$$$$$  |  $$$$/| $$|  $$$$$$/| $$  | $$
+|_______/  \_______/ \_______/   \___/  |__/ \______/ |__/  |__/
+bm_press_section receives hash:
+{ id: ..., key: ..., name: ..., shortname: ..., hypos: ... }
+-->
+<script id="bm_press_section" type="text/html">
+	<ul class="nav nav-tabs nav-stacked unstyled">
+		<li><a class="btn"
+		data-toggle="collapse"
+		data-target="#{{ id }}_{{ key }}_infocoll"
+		>
+			{{ name }}
+		</a></li>
+		<li class="bm_press_info bm_press_info_{{ key }} collapse"
+			id="{{ id }}_{{ key }}_infocoll">
+		</li>
+		<li>
+			<input style="width:100%;"
+				id="{{ key }}_hypo_maker"
+				type="text"
+				value="{{ designed_for }}"
+				placeholder="New {{ shortname }} assumption"
+				onchange="bm_press.hypo.new('{{ key }}');"
+				tabIndex="1"
+			>
+		</li>
+	</ul>
+	<div id="{{ id }}_{{ key }}_hyps">
+		<div class="sortable">
+		{{# hypos }}
+		{{> bm_press_hypo_p }}
+		{{/ hypos }}
+		</div>
+	</div>
+</script><!--/ bm_press_section -->
+
+<script id="bm_press_info_key_partners" type="text/html">
+	<small>
+	<ul class="unstyled">
+		<li>Who are our Key Partners?</li>
+		<li>Who are our key suppliers?</li>
+		<li>Which Key Resources are we acquiring from partners?</li>
+		<li>Which Key Activities do partners perform?</li>
+	</ul>
+	<dl>
+		<dt>Motivations for partnerships</dt>
+		<dd><ul class="unstyled">
+			<li>Optimization and economy</li>
+			<li>Reduction of risk and uncertainty</li>
+			<li>Acquisition of particular resources and activities</li>
+		</ul></dd>
+	</dl>
+	</small>
+</script>
+<script id="bm_press_info_key_activities" type="text/html">
+	<small>
+	<ul class="unstyled">
+		<li>What Key Activities do our Value Propositions require?</li>
+		<li>Our Distribution Channels?</li>
+		<li>Customer Relationships?</li>
+		<li>Revenue Streams?</li>
+	</ul>
+	<dl>
+		<dt>Categories</dt>
+		<dd><ul class="unstyled">
+			<li>Production</li>
+			<li>Problem solving</li>
+			<li>Platform/network</li>
+		</ul></dd>
+	</dl>
+	</small>
+</script>
+<script id="bm_press_info_key_resources" type="text/html">
+	<small>
+	<ul class="unstyled">
+		<li>What Key Resources do our Value Propositions require?</li>
+		<li>Our Distribution Channels?</li>
+		<li>Customer Relationships?</li>
+		<li>Revenue Streams?</li>
+	</ul>
+	<dl>
+		<dt>Categories</dt>
+		<dd><ul class="unstyled">
+			<li>Physical</li>
+			<li>Intellectual
+				<ul class="unstyled">
+					<li>Brand patents</li>
+					<li>Copyrights</li>
+					<li>Data</li>
+				</ul>
+			<li>Human</li>
+			<li>Financial</li>
+		</ul></dd>
+	</dl>
+	</small>
+</script>
+<script id="bm_press_info_value_propositions" type="text/html">
+	<small>
+	<ul class="unstyled">
+		<li>What value do we deliver to the customer?</li>
+		<li>Which one of our customer'<!--'-->s problems are we helping to solve?</li>
+		<li>What bundles of products and services are we offering to each Customer Segment?</li>
+		<li>Which customer needs are we satisfying?</li>
+	</ul>
+	<dl>
+		<dt>Characteristics</dt>
+		<dd><ul class="unstyled">
+			<li>Newness</li>
+			<li>Performance</li>
+			<li>Customization</li>
+			<li>"Getting the Job Done"</li>
+			<li>Design</li>
+			<li>Brand/status</li>
+			<li>Price</li>
+			<li>Cost reduction</li>
+			<li>Risk reduction</li>
+			<li>Accessibility</li>
+			<li>Convenience/usability</li>
+		</ul></dd>
+	</dl>
+	</small>
+</script>
+<script id="bm_press_info_customer_relationships" type="text/html">
+	<small>
+	<ul class="unstyled">
+		<li>Which type of relationship does each of our Customer Segments expect us to establish and maintain with them?</li>
+		<li>Which ones have we established?</li>
+		<li>How are they integrated with the rest of our business model?</li>
+		<li>How costly are they?</li>
+		</li>
+	</ul>
+	<dl>
+		<dt>Examples</dt>
+		<dd><ul class="unstyled">
+			<li>Personal assistance</li>
+			<li>Dedicated personal assistance</li>
+			<li>Self-service</li>
+			<li>Automated services</li>
+			<li>Communities</li>
+			<li>Co-creation</li>
+		</ul></dd>
+	</dl>
+	</small>
+</script>
+<script id="bm_press_info_channels_" type="text/html">
+	<small>
+	<ul class="unstyled">
+		<li>Through which Channels do our Customer Segments want to be reached?</li>
+		<li>How are we reaching them now?</li>
+		<li>How are our Channels integrated?</li>
+		<li>Which ones work best?</li>
+		<li>Which ones are most cost-efficient?</li>
+		<li>How are we integrating them with customer routines?</li>
+	</ul>
+	<dl>
+		<dt>Channel Phases</dt>
+		<dd><ol>
+		<li><dl><dt>Awareness</dt>
+				<dd>How do we raise awareness about our company'<!--'-->s products and services?</dd></dl></li>
+		<li><dl><dt>Evaluation</dt>
+				<dd>How do we help customers evaluate our organization'<!--'-->s Value Proposition?</dd></dl></li>
+		<li><dl><dt>Purchase</dt>
+				<dd>How do we allow customers to purchase specific products and services?</dd></dl></li>
+		<li><dl><dt>Delivery</dt>
+				<dd>How do we deliver a Value Proposition to customers?</dd></dl></li>
+		<li><dl><dt>After sales</dt>
+				<dd>How do we provide post-purchase customer support?</dd></dl></li>
+		</ul></dd>
+	</dl>
+	</small>
+</script>
+<script id="bm_press_info_customer_segments" type="text/html">
+	<small>
+	<ul class="unstyled">
+		<li>For whom are we creating value?</li>
+		<li>Who are our most important customers?</li>
+	</ul>
+	<dl>
+		<dd style="margin-top: 8px;"><ul class="unstyled">
+			<li>Mass market</li>
+			<li>Niche market</li>
+			<li>Segmented</li>
+			<li>Diversified</li>
+			<li>Multi-sided platform</li>
+		</ul></dd>
+	</dl>
+	</small>
+</script>
+<script id="bm_press_info_cost_structure" type="text/html">
+	<small>
+	<ul class="unstyled">
+		<li>What are the most important costs inherent in our business model?</li>
+		<li>Which Key Resources are most expensive?</li>
+		<li>Which Key Activities are most expensive?</li>
+	</ul>
+	<dl>
+		<dt>Is your business more:</dt>
+		<dd><ul class="unstyled">
+			<li>Cost Driven
+				<ul class="unstyled">
+					<li>Leanest cost structure</li>
+					<li>Low price value proposition</li>
+					<li>Maximum automation</li>
+					<li>Extensive outsourcing</li>
+				</ul>
+			</li>
+			<li>Value Driven
+				<ul class="unstyled">
+					<li>Focused on value creation</li>
+					<li>Premium value proposition</li>
+				</ul>
+			</li>
+		</ul></dd>
+		<dt>Sample characteristics:</dt>
+		<dd><ul class="unstyled">
+			<li>Fixed costs
+				<ul class="unstyled">
+					<li>Salaries</li>
+					<li>Rents</li>
+					<li>Utilities</li>
+				</ul>
+			<li>Variable costs</li>
+			<li>Economies of scale</li>
+			<li>Economies of scope</li>
+		</ul></dd>
+	</dl>
+	</small>
+</script>
+<script id="bm_press_info_revenue_streams" type="text/html">
+	<small>
+	<ul class="unstyled">
+		<li>For what value are our customers really willing to pay?</li>
+		<li>For what do they currently pay?</li>
+		<li>How are they currently paying?</li>
+		<li>How would they prefer to pay?</li>
+		<li>How much does each Revenue Stream contribute to overall revenues?</li>
+	</ul>
+	<dl>
+		<dt>Types:</dt>
+		<dd><ul class="unstyled">
+			<li>Asset sale</li>
+			<li>Usage fee</li>
+			<li>Subscription fees</li>
+			<li>Lending/renting/leasing</li>
+			<li>Licensing</li>
+			<li>Brokerage fees</li>
+			<li>Advertising</li>
+		</ul></dd>
+		<dt>Fixed Pricing</dt>
+		<dd><ul class="unstyled">
+			<li>List price</li>
+			<li>Product feature dependent</li>
+			<li>Customer segment dependent</li>
+			<li>Volume dependent</li>
+		</ul></dd>
+		<dt>Dynamic Pricing</dt>
+		<dd><ul class="unstyled">
+			<li>Negotiation (bargaining)</li>
+			<li>Yield management</li>
+			<li>Real-time market</li>
+		</ul></dd>
+	</dl>
+	</small>
+</script>
+
+<!--
+/$$                                    
+| $$                                    
+| $$$$$$$  /$$   /$$  /$$$$$$   /$$$$$$ 
+| $$__  $$| $$  | $$ /$$__  $$ /$$__  $$
+| $$  \ $$| $$  | $$| $$  \ $$| $$  \ $$
+| $$  | $$| $$  | $$| $$  | $$| $$  | $$
+| $$  | $$|  $$$$$$$| $$$$$$$/|  $$$$$$/
+|__/  |__/ \____  $$| $$____/  \______/ 
+           /$$  | $$| $$                
+          |  $$$$$$/| $$                
+           \______/ |__/  
+in context { hypo_luid: ..., name: ..., shortname: ..., hypos: ... }
+-->
+<script id="bm_press_hypo_p" type="text/html" class="partial">
+
+<div class="bm_press_hypo alert dropdown"
+	id="{{ hypo_luid }}"
+	state="{{ state }}">
+
+	<button class="btn btn-mini dropdown-toggle pull-right"
+		data-toggle="dropdown" on>
+		<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu pull-right">
+		<!--<li class="nav-header">Set state:</li>-->
+		<li><a class="alert alert-warning" tabindex="-1"
+			href="javascript: bm_press.hypo.set_state('{{ hypo_luid }}','U');"
+			><i class="icon-pause"></i> Pending</a></li>
+		<li><a class="alert alert-info" tabindex="-1"
+			href="javascript: bm_press.hypo.set_state('{{ hypo_luid }}','A');"
+			><i class="icon-play"></i> Active/Highlight</a></li>
+		<li><a class="alert alert-success" tabindex="-1"
+			href="javascript: bm_press.hypo.set_state('{{ hypo_luid }}','C');"
+			><i class="icon-ok"></i> Valid</a></li>
+		<li><a class="alert alert-error" tabindex="-1"
+			href="javascript: bm_press.hypo.set_state('{{ hypo_luid }}','D');"
+			><i class="icon-ban-circle"></i> Invalid</a></li>
+
+		<li class="divider"></li>
+		<li><a tabindex="-1"
+			href="javascript: bm_press.hypo.edit('{{ hypo_luid }}');"
+			><i class="icon-pencil"></i> Edit text</a></li>
+		<li class="divider"></li>
+		<li><a tabindex="-1"
+			href="javascript: bm_press.hypo.delete('{{ hypo_luid }}');"
+			><i class="icon-trash"></i> Delete</a></li>
+	</ul>
+	<p class="hypo_title" id="{{ hypo_luid }}_title">{{ title }}</p>
+
+</div>
+
+</script>
+<script id="bm_press_hypo" type="text/html">
+	{{> bm_press_hypo_p }}
+</script>
+
+
+<!--
+receives $.admin.data.get_hypo_ob( hypo_luid ),
+which is { hypo_luid: ..., title: ..., state: ... }
+todo: for now a textfield, will later be textarea.
+-->
+<script id="bm_press_hypo_title_field" type="text/html">
+	<div class="bm_press_hypo_title_field">
+		<input type="textfield"
+			id="{{ hypo_luid }}_field"
+			onblur="bm_press.hypo.set('{{ hypo_luid }}', this );"
+			value="{{ title }}"
+		>
+	</div>
+</script>
+
+<!--
+ /$$            /$$$$$$         
+|__/           /$$__  $$        
+ /$$ /$$$$$$$ | $$  \__//$$$$$$ 
+| $$| $$__  $$| $$$$   /$$__  $$
+| $$| $$  \ $$| $$_/  | $$  \ $$
+| $$| $$  | $$| $$    | $$  | $$
+| $$| $$  | $$| $$    |  $$$$$$/
+|__/|__/  |__/|__/     \______/ 
+-->
+<script id="bm_press_information" type="text/html" class="partial">
+
+<table class="table table-hover">
+	<tbody>
+		<tr>
+			<td>Designed for</td>
+			<td><input id="inputDesignedFor" class="input-large" type="text"
+				value="{{ designed_for }}" onchange="bm_press.model.has_changed();"></td>
+		</tr>
+		<tr>
+			<td>Iteration #</td>
+			<td><input id="outputIteration" disabled class="input-large" type="text"
+				value="{{ iteration }}"></td>
+		</tr>
+		<tr>
+			<td>Created on</td>
+			<td><input id="outputCreatedOn" disabled class="input-large" type="text"
+				value="{{ time_created }}"></td>
+		</tr>
+		<tr>
+			<td>Saved on</td>
+			<td><input id="outputSavedOn" disabled class="input-large" type="text"
+				value="{{ time_saved }}"></td>
+		</tr>
+		<tr>
+			<td>Designed by</td>
+			<td><input id="inputDesignedBy" disabled
+				class="input-large" type="text"
+				value="{{ designed_by }}" onchange="bm_press.model.has_changed();"></td>
+		</tr>
+	</tbody>
+</table>
+
+</script>
+
+<!--
+           /$$                             /$$                               /$$          
+          | $$                            | $$                              | $$          
+  /$$$$$$$| $$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$    /$$$$$$$  /$$$$$$   /$$$$$$$  /$$$$$$ 
+ /$$_____/| $$__  $$ /$$__  $$ /$$__  $$|_  $$_/   /$$_____/ /$$__  $$ /$$__  $$ /$$__  $$
+|  $$$$$$ | $$  \ $$| $$  \ $$| $$  \__/  | $$    | $$      | $$  \ $$| $$  | $$| $$$$$$$$
+ \____  $$| $$  | $$| $$  | $$| $$        | $$ /$$| $$      | $$  | $$| $$  | $$| $$_____/
+ /$$$$$$$/| $$  | $$|  $$$$$$/| $$        |  $$$$/|  $$$$$$$|  $$$$$$/|  $$$$$$$|  $$$$$$$
+|_______/ |__/  |__/ \______/ |__/         \___/   \_______/ \______/  \_______/ \_______/
+-->
+<script id="bm_press_shortcode" type="text/html" class="partial">
+<p>
+	To embed your business model in a post:
+</p>
+<ol>
+	<li>Copy the following shortcode by right clicking your mouse or hitting CTRL+C on your keyboard (CMD+C on a Mac).</li>
+	<li>Click on New Post or the post that you want to edit.</li>
+	<li>Paste the shortcode where you want the business model embedded.</li>
+</ol>
+<p>
+	Future versions of BM Press will show you the embedded model in the visual editor. For now you must View Post in order to see the final result.
+</p>
+<table class="table table-hover">
+	<tbody>
+		<!--<tr>
+			<td>Width</td>
+			<td><input id="inputWidth" class="input-large" type="text" placeholder="100%"
+				onchange="bm_press.shortcode.update('{{ id }}');"></td>
+		</tr>
+		<tr>
+			<td>Height</td>
+			<td><input id="inputHeight" class="input-large" type="text" placeholder="auto"
+				onchange="bm_press.shortcode.update('{{ id }}');"></td>
+		</tr>
+		<tr>
+			<td>Hide title</td>
+			<td><input id="checkboxHideTitle" type="checkbox" unchecked
+			 	class="input-large"
+				onchange="bm_press.shortcode.update('{{ id }}');">
+			</td>
+		</tr>
+		<tr>
+			<td>Hide attribution</td>
+			<td><input id="checkboxHideAttribution" type="checkbox" unchecked
+			 	class="input-large"
+				onchange="bm_press.shortcode.update('{{ id }}');">
+			</td>
+		</tr>-->
+		<tr>
+			<td>Shortcode</td>
+			<td><textarea id="outputShortcode" class="input-large" rows="3"></textarea></td>
+		</tr>
+	</tbody>
+</table>
+</script>
+
+<!--
+                               /$$           /$$          
+                              | $$          | $$          
+ /$$$$$$/$$$$   /$$$$$$   /$$$$$$$  /$$$$$$ | $$  /$$$$$$$
+| $$_  $$_  $$ /$$__  $$ /$$__  $$ |____  $$| $$ /$$_____/
+| $$ \ $$ \ $$| $$  \ $$| $$  | $$  /$$$$$$$| $$|  $$$$$$ 
+| $$ | $$ | $$| $$  | $$| $$  | $$ /$$__  $$| $$ \____  $$
+| $$ | $$ | $$|  $$$$$$/|  $$$$$$$|  $$$$$$$| $$ /$$$$$$$/
+|__/ |__/ |__/ \______/  \_______/ \_______/|__/|_______/ 
+-->
+
+<script id="bm_press_model_modals" type="text/html" class="partial">
+
+<div class="modal hide fade" id="close_without_saving">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Close without saving?</h3>
+  </div>
+  <div class="modal-body">
+    <p>Your business model has changed since last time it was saved.
+    Do you want to save changes before closing?</p>
+  </div>
+  <div class="modal-footer">
+  <a href="javascript:bm_press('#close_without_saving').modal('hide');" class="btn">Cancel</a>
+    <a href="javascript:bm_press.model.confirmed_close();" class="btn">Close without saving</a>
+    <a href="javascript:bm_press.model.save({then_close: true});" class="btn btn-primary saveButton">Save changes and close</a>
+  </div>
+</div>
+
+<div class="modal hide fade" id="delete_model">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Are you sure you want to delete this business model?</h3>
+  </div>
+  <div class="modal-footer">
+  	<a href="javascript:bm_press('#delete_model').modal('hide');" class="btn">Cancel</a>
+    <a href="javascript:bm_press.model.confirmed_delete();" class="btn btn-primary deleteButton"><i class="icon-trash icon-white"></i> Delete model</a>
+  </div>
+</div>
+
+</script>
+
+
+<script id="bm_press_list_modal" type="text/html" class="partial">
+
+<div class="modal hide fade" id="delete_model_{{ id }}">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Are you sure you want to delete this business model?</h3>
+	</div>
+	<div class="modal-body">
+		<table class="table table-striped table-hover">
+			<thead>
+				<th>Designed for</th>
+				<th>Iteration</th>
+				<th>Created on</th>
+				<th>Changed on</th>
+				<th>Designed by</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ designed_for }}</td>
+					<td>{{ iteration }}</td>
+					<td>{{ time_created }}</td>
+					<td>{{ time_saved }}</td>
+					<td>{{ designed_by }} </td>
+				</tr>
+			</tbody>
+		</table>
+ 	</div>
+ 	<div class="modal-footer">
+	 	<a href="javascript:bm_press('#delete_model_{{ id }}').modal('hide');"
+	 		class="btn">Cancel</a>
+	 	<a href="javascript:bm_press.list.confirmed_delete('{{ id }}');"
+	 		class="btn btn-primary deleteButton"><i class="icon-trash icon-white"></i> Delete model</a>
+ 	</div>
+</div>
+
+<div class="modal hide fade" id="shortcode_model_{{ id }}">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Shortcode for use in posts</h3>
+	</div>
+	<div class="modal-body">
+		{{> bm_press_shortcode }}
+ 	</div>
+ 	<div class="modal-footer">
+	 	<a href="javascript:bm_press('#shortcode_model_{{ id }}').modal('hide');"
+	 		class="btn">Close</a>
+ 	</div>
+</div>
+
+</script>

@@ -1,0 +1,132 @@
+<!--
+will not fill sections. this must be done by javascript,
+calling ich.bm_press_section( ... )
+
+receives $.viewer.cached[id]
+container .bm_press_viewer div produced by PHP
+
+.val_prop_col used for responsive css
+.r1 and .r2 used to select & size bm_blocks in js
+-->
+<script id="bm_press_viewer" type="text/html">
+
+<table class="bm_canvas_table"><tbody>
+	<tr class="bm_canvas_row bm_canvas_top_row"><!-- top row -->
+		<td colspan=2>
+			<table class="bm_canvas_inner_table"><tbody>
+				<tr> 
+					
+					<td class="bm_canvas_section_box key_partners">
+					</td>
+					
+				</tr>
+			</tbody></table>
+		</td>
+		<td colspan=2>
+			<table class="bm_canvas_inner_table"><tbody>
+				<tr>
+					<!-- actual BM section -->
+					<td class="bm_canvas_section_box key_activities">
+					</td>
+				</tr>
+				<tr>
+					<!-- actual BM section -->
+					<td class="bm_canvas_section_box key_resources">
+					</td>
+				</tr>
+			</tbody></table>
+		</td>
+		<td colspan=2>
+			<table class="bm_canvas_inner_table"><tbody>
+				<tr>
+					<!-- actual BM section -->
+					<td class="bm_canvas_section_box value_propositions">
+					</td>
+
+				</tr>
+			</tbody></table>
+		</td>
+		<td colspan=2>
+			<table class="bm_canvas_inner_table"><tbody>
+				<tr>
+					<!-- actual BM section -->
+					<td class="bm_canvas_section_box customer_relationships">
+					</td>
+				</tr>
+				<tr>
+					<!-- actual BM section -->
+					<td class="bm_canvas_section_box channels_">
+					</td>
+				</tr>
+			</tbody></table>
+		</td>
+		<td colspan=2>
+			<table class="bm_canvas_inner_table"><tbody>
+				<tr>
+					<!-- actual BM section -->
+					<td class="bm_canvas_section_box customer_segments">
+					</td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr><!-- /top row -->
+	<tr class="bm_canvas_row bm_canvas_bottom_row"><!-- bottom row -->
+		<!-- follow structure from top row -->
+		<td colspan=5>
+			<table class="bm_canvas_inner_table"><tbody>
+				<tr>
+					<!-- actual BM section -->
+					<td class="bm_canvas_section_box cost_structure">
+					</td>
+				</tr>
+			</tbody></table>
+		</td>
+		<td colspan=5>
+			<table class="bm_canvas_inner_table"><tbody>
+				<tr>
+					<!-- actual BM section -->
+					<td class="bm_canvas_section_box revenue_streams">
+					</td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr><!-- /bottom row -->
+</tbody></table>
+
+<div class="bm_canvas_foot">
+	<a href="http://bmpress.io">Create and Blog Business Models on Canvas in WordPress for FREE with Business Model Press</a>.<br>
+	<a href="http://businessmodelgeneration.com/canvas">Business Model Canvas</a> <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY</a> by <a href="http://alexosterwalder.com">Osterwalder</a>.
+</div>
+
+
+</script> <!-- bm_press_viewer -->
+
+<!--
+bm_press_section receives hash:
+{ id: ..., instance: ..., key: ..., name: ..., shortname: ..., hypos: ... }
+id="{{ id }}_{{ instance }}_{{ key }}_coll"
+--> 
+
+<script id="bm_press_section" type="text/html">
+	<div class="block_title">{{ name }}</div>
+	<div class="hypos_cont">
+		{{# hypos }}
+		{{> bm_press_hypo_p }}
+		{{/ hypos }}
+	</div>
+</script><!--/ bm_press_section -->
+
+<!--
+in context { hypo_luid: ..., name: ..., shortname: ..., hypos: ... }
+-->
+<script id="bm_press_hypo_p" type="text/html" class="partial">
+	<div class="bm_press_hypo alert"
+		id="{{ hypo_luid }}"
+		state="{{ state }}"
+	>{{ title }}</div>
+</script>
+
+
+<script id="bm_press_hypo" type="text/html">
+	{{> bm_press_hypo_p }}
+</script>

@@ -1,0 +1,197 @@
+
+/* less css for table */
+/* MMM TODO remove texteffects on hypos */
+@window_break_width: 940px;
+
+@bmc_border_color: #ddd;
+@bmc_border_w: 2px;
+@bmc_tdpadding: 4px;
+
+@section_title_fontsize: .8em;
+@section_title_lineheight: .9em;
+
+@section_hypo_fontsize: .8em;
+@section_hypo_lineheight: 1.1em;
+
+/* .entry-content additions put in to achieve higher specificity than wpstyles */
+@media all {
+
+	.bm_canvas, .entry-content .bm_canvas {
+		font-family: Helvetica, Arial;
+		width: 100%;
+		background-color: #f8f8f8;
+		padding: 0px;
+		margin: 0px;
+
+		box-sizing: border-box;
+
+		div, table, tbody, tr, td {
+			box-sizing: border-box;
+		}
+
+
+	}
+
+
+
+	.bm_canvas_table, .entry-content .bm_canvas_table {
+		border-collapse: collapse;
+		width: 100%;
+		background-color: #eee;
+		margin: 0px;
+		padding: 0px;
+
+		> tbody {
+			width: 100%;
+			margin: 0px;
+			padding: 0px;
+			
+		}
+		
+	}
+
+	.bm_canvas_row, .entry-content .bm_canvas_row {
+		width: 100%;
+		margin: 0px;
+		padding: 0px;
+
+		> td {
+			vertical-align: top;
+			background-color: #fff;
+			border: @bmc_border_w solid @bmc_border_color;
+			border-bottom: 0px;
+			padding: 0px;
+			margin: 0px;
+			
+		}
+
+	}
+
+	.bm_canvas_top_row, .entry-content .bm_canvas_top_row {
+		> td {
+			width: 20%;
+			box-sizing: border-box;
+		}
+	}
+
+	.bm_canvas_bottom_row, .entry-content .bm_canvas_bottom_row {
+		> td {
+			border-bottom: @bmc_border_w solid @bmc_border_color;
+			box-sizing: border-box;
+		}
+	}
+
+	.bm_canvas_inner_table, .entry-content .bm_canvas_inner_table {
+		padding: 0px;
+		margin: 0px;
+		width: 100%;
+		border-collapse: collapse;
+		border: 0px;
+		border-bottom: 0px;
+
+		> tbody > tr:nth-child(2) > td {
+			border-top: @bmc_border_w solid @bmc_border_color;
+		}
+	}
+
+
+
+	.bm_canvas_section_box, .entry-content .bm_canvas_section_box {
+		padding: @bmc_tdpadding;
+		border: 0px;
+		border-top: 0px;
+		padding-bottom: 1px;
+	}
+
+	.block_title, .entry-content .block_title {
+		font-size: @section_title_fontsize;
+		line-height: @section_title_lineheight;
+		margin-bottom: 4px;
+		color: #484848;
+	}
+
+	.entry-content .alert {
+		border-radius: 0px;
+		border: 0px;
+		padding: 3px;
+		margin-bottom: 2px;
+		margin-top: 3px;
+		margin-left: -1px;
+		margin-right: -2px;
+		font-size: @section_hypo_fontsize;
+		line-height: @section_hypo_lineheight;
+		text-shadow: none;
+	}
+
+
+	.bm_canvas_foot, .entry-content .bm_canvas_foot {
+		padding: @bmc_tdpadding;
+		font-size: .75em;
+		line-height: 1.1em;
+		text-align: center;
+		background-color: #f8f8f8;
+	}
+
+}
+
+
+@media only screen and (max-width: @window_break_width) {
+	.bm_canvas, .entry-content .bm_canvas {
+		margin: 0px;
+		padding: 0px;
+	}
+	.bm_canvas_table, .entry-content .bm_canvas_table {
+		display: block;
+		width: 100%;
+
+		padding: 0px;
+		margin: 0px;
+
+		tbody, tr, td {
+			display: block;
+		}
+	}
+
+	.bm_canvas_top_row, .entry-content .bm_canvas_top_row {
+		> td {
+			width: 100%;
+		}
+	}
+
+	.bm_canvas_bottom_row, .entry-content .bm_canvas_bottom_row {
+		> td:first-child {
+			border-bottom: 0px solid @bmc_border_color;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+/* viewer.less 
+
+	.bm_block {
+		border: 1px solid black;
+		background-color: white;
+		
+		.block_title {
+			padding: 2px;
+
+		}
+		.hypos_cont {
+			.alert {
+				padding: 4px;
+				margin: 1px;
+				margin-top: 0px;
+				line-height: 120%;
+			}
+		}
+	}
+
+}
+*/

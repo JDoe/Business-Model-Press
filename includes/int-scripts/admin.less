@@ -1,0 +1,384 @@
+/* admin.less */
+#wpfooter {
+	visibility: hidden;
+}
+
+/*
+look into issue of wells sometimes having
+*/
+
+body.wp-admin.wp-core-ui.js.toplevel_page_bm_press {
+	background-color: #f4f4f4;
+	font-family: Lato, sans-serif;
+	p, li {
+		font-size: 13px;
+	}
+}
+
+#wpcontent {
+	padding-left: 0px;
+}
+
+.tab-pane.active > p {
+	padding-left: 8px;
+	padding-top: 8px;
+}
+
+.tab-pane.active tr:first-child > td {
+	border-top: 0px;
+}
+
+
+#bm_press_admin .tab-content {
+	/*background-color: #fafafa;*/
+	background: linear-gradient( to bottom, #fafafa, #f4f4f4);
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+#bm_press_admin .container {
+	margin-left: 0px;
+	margin-right: 0px;
+	width: 100%;
+}
+
+#bm_press_admin {
+
+	.hero-unit {
+		background: linear-gradient( to bottom, #fafafa, #f4f4f4 );
+		padding-bottom: 0px;
+		margin-bottom: 0px;
+		p {
+			max-width: 620px;
+			background: #fafafa;
+			padding: 8px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+	}
+
+
+	> .navbar {
+		>.navbar-inner {
+			border-radius: 0px;
+			border: 0px;
+			border-bottom: 1px solid #ddd;
+		}
+	}
+
+	.nav.nav-tabs {
+		padding-left: 12px;
+
+		li.active a {
+			background-color: #fafafa;
+		}
+	}
+
+	.well .nav.nav-tabs {
+		padding-left: 0px;
+	}
+
+	.tab-content {
+		overflow: visible;
+	}
+	#tab_models {
+		
+	}
+	.hypo_title {
+		margin-bottom: 0px;
+		cursor: move;
+	}
+
+	.nav {
+		margin-bottom: 0px;
+	}
+}
+
+
+
+#tab_canvas {
+
+	>.row-fluid:first-child {
+		padding-top: 10px;
+	}
+
+	.nav {
+		li {
+			a.btn {
+				cursor: help;
+				border: 1px solid #ddd;
+				background: #fafafa;
+				border-radius: 0px;
+				border-bottom: 0px;
+			}
+			input {
+				height: 30px;
+				border-bottom-left-radius: 0px;
+				border-top-left-radius: 0px;
+				border-top-right-radius: 0px;
+				margin-bottom: 8px;
+			}
+		}
+
+		li.bm_press_info {
+			
+			small {
+				display: block;
+				background-color: #fefefe;
+				border-left: 1px solid #ddd;
+				border-right: 1px solid #ddd;
+				border-top: 1px solid #ddd;
+				padding-left: 4px;
+				padding-right: 4px;
+				padding-top: 4px;
+				padding-bottom: 1px;
+			}
+			dl {
+				margin-bottom: 0px;
+				margin-top: 0px;
+			}
+			dd {
+				margin-bottom: 0px;
+				margin-left: 5px;
+				ol {
+					margin-left: 12px;
+					dt {
+						font-style: italic;
+						font-weight: normal;
+					}
+					dd {
+						margin-left: -10px;
+						line-height: 13px;
+					}
+				}
+				ul>li {
+					font-style: italic;
+				}
+				ul.unstyled ul.unstyled {
+					margin-left: 8px;
+				}
+				/*ul>li>ul>li {
+					font-style: italic;
+				}*/
+				li>ul {
+					margin-top: 4px;
+					margin-bottom: 4px;
+				}
+			}
+			li {
+				margin-bottom: 5px;
+				line-height: 13px;
+			}
+		}
+	}
+
+	.nav-tabs>li.collapse {
+		margin-bottom: 0px;
+	}
+	.well {
+		background-color: white;
+		padding: 2px;
+		margin: 1px;
+		border-radius: 0px;
+
+		border-top: 1px solid #eee;
+		border-left: 1px solid #eee;
+		padding-top: 2px;
+
+		margin-top: 2px;
+		margin-bottom: 2px;
+
+		padding-bottom: 28px;
+
+		box-shadow: 4px 4px 20px 2px
+			rgba(0, 0, 0, 0.03);
+
+		.bm_press_hypo.alert {
+			padding: 4px;
+			padding-left: 6px;
+
+			margin-top: 0px;
+			margin-left: 1px;
+			margin-bottom: 3px;
+			margin-right: 1px;
+
+			border-radius: 0px;
+			border: 0px;
+			text-shadow: none;
+
+			button {
+				margin-top: -2px;
+				padding-left: 4px;
+				margin-right: -1px;
+			}
+		}
+		.bm_press_hypo.alert-warning {
+			color: black;
+		}
+		.bm_press_hypo.alert-info {
+			color: black;
+		}
+		.bm_press_hypo.alert-success {
+			color: black;
+		}
+		.bm_press_hypo.alert-error {
+			color: black;
+		}
+	}
+
+	.dropdown-menu.pull-right {
+		border-top-right-radius: 0px;
+		border-top-left-radius: 0px;
+		border-top: 1px solid rgba(0,0,0,0.2);
+		padding-top: 0px;
+		padding-bottom: 0px;
+		right: 4;
+
+
+		.divider {
+			margin: 0px;
+		}
+
+		>li {
+			margin-bottom: 0px;
+			border-radius: 0px;
+			> a {
+				padding: 6px;
+				border-radius: 0px;
+				margin-bottom: 0px;
+				border: 0px;
+			}
+			> a:hover {
+				text-shadow: none;
+			}
+			> a:focus {
+				text-shadow: none;
+			}
+		}
+
+
+	}
+
+}
+
+
+
+ul.wp-submenu {
+	margin-left: 0px;
+}
+
+
+
+body > .ui-sortable-helper {
+	height: 28px;
+	padding: 4px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-radius: 0px;
+	border: 0px;
+	opacity: 0.9;
+	box-shadow: 4px 4px 12px 1px
+		rgba(0, 0, 0, 0.1);
+			
+}
+
+.placeholder {
+	display: block;
+	position: relative;
+	height: 27px;
+	padding: 0px;
+	width: calc( 100% - 1px );
+	background:
+	linear-gradient(to bottom, #f4f4f4, #fafafa);
+	border: 0px solid #ddd;
+	border-radius: 0px;
+	margin-left: 1px;
+	margin-bottom: 2px;
+
+}
+
+.sortable {
+	min-height: 20px;
+}
+
+footer p {
+	padding-left: 10px;
+}
+
+/* Large desktop */
+
+@media (min-width: 979px) {
+	#tab_canvas .row-fluid {
+		>div {
+			margin-left: 0px;
+		}
+		>.span2 {
+			width: 20%;
+			margin: 0px;
+		}
+		>.span5 {
+			width: 50%;
+			margin: 0px;
+		}
+		>.span10 {
+			width:100%;
+			margin: 0px;
+		}
+	}
+}
+ 
+/* Portrait tablet to landscape and desktop */
+
+@media (min-width: 768px) and (max-width: 979px) {
+	#tab_canvas .row-fluid {
+		>div {
+			margin-left: 0px;
+		}
+		>.span2.val_prop_col {
+			clear: both;
+			width: 100%;
+		}
+		>.span2 {
+			width: 50%;
+			margin: 0px;
+		}
+		>.span5 {
+			width: 50%;
+			margin: 0px;
+		}
+		>.span10 {
+			width:100%;
+			margin: 0px;
+		}
+	}
+}
+ 
+/* Landscape phone to portrait tablet */
+
+@media (max-width: 782px) {
+	.auto-fold #wpcontent {
+		padding-left: 0px;
+	}
+	#tab_canvas .row-fluid {
+		>div {
+			margin-left: 0px;
+		}
+		.span {
+			width: 100%;
+			margin: 0px;
+		}
+	}
+}
+ 
+/* Landscape phones and down */
+
+@media (max-width: 480px) {
+
+}
+
+@media (max-width: 767px) {
+	body.wp-admin.toplevel_page_bm_press {
+		padding-right: 0px;
+		padding-left: 0px;
+	}
+}
