@@ -647,4 +647,4 @@ men æ burde kunne ta en sjekk her. if response.no_model
 			return utftext;
 		},
 	}; // base64
-})(bm_press); // within this function, $ always refers to jQuery
+}(bm_press)); // within this function, $ always refers to jQuery
